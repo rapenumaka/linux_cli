@@ -1,0 +1,58 @@
+### Cron Utility
+
+## List of cron tabs for this user
+$ crobtab -l
+
+## Edit the crontab for that user
+$ crontab -e
+
+## Using the vim editor 
+
+
+
+    |
+    |
+### * * * * * command_to_execute
+    1 2 3 4 5 
+	
+	1 - minutes (0-59)
+	2 - hours(0-23)
+	3 - day of mmonth (1-31)
+	4 - month (1-12)
+	5 - day of week (0-6) (Sunday to Saturday; 7 is also Sunday on some systems)
+
+Example :
+every min/hour/day/month/every weekday -
+* * * * * echo 'Hello' >> /tmp/test.txt	
+30 * * * * echo 'Hello' >> /tmp/test.txt	- Runs every 30 mintutes 
+30 5 * * *  - Run every day at 5:30am 
+30 5 1 1 *  - Runs every day at 5:30 on 1st of January . So this runs once for every year
+30 5 4 8 *  - Run every year at 5:30 on 4th of August.
+0 0 * * 1 - Runs on monday at 12:00am (midnight)
+
+### To run 1st and 15th day of every month at mindnight 
+
+0 0 1,15 * * - Runs at midnight on 1st and 15th of every month
+30 5 1,15 * * - Runs at 5:30am on 1st and 15th of evry month 
+
+### Interval 
+
+*/5 * * * *  - Runs every minute
+*/10 * * * * - Runs every 10 minutes 
+0 0 */3 * * - Runs once every 3 days 
+0 0 * */2 * - Runs for every 2 months
+
+### every 30 mintues from 9am to 5pm monday to friday
+
+*/30 9-17 * * 1-5 
+
+
+https://crontab.guru
+
+
+
+
+
+
+
+	
