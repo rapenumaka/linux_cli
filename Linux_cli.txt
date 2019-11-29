@@ -1,0 +1,255 @@
+#  Navigating the file system
+pwd -Print working directory
+cd - change directory 
+ls - Show all the files 
+ls -a : hidden files, hidden files begin with .
+ls -R /source/*
+
+ls -l : long files, more information 
+ls -la : shows hidden file and more information
+
+cd ~ : Goes to home directory
+cd + (enter) : Goes to home directory 
+
+# Creating files , copy, move ,rename and delete 
+
+mkdir mydir : Creates a new directory 
+touch myfile.txt : Create a text directory 
+open myfile.txt : Opens the myfile.txt in the default text editor 
+cp myfile.txt myfilecopy.txt : creates a copy of "myfile.txt " and names it as "myfilecopy.txt"
+mv myfile.txt orginalfile.txt : renames the "myfile.txt" to "orginalfile.txt"
+mv myfile.txt /<new location> : moves the file to  new location 
+
+## Move and rename the file "orginalfile.txt" to a one level upwards and rename it as "testfile.txt"
+
+mv orginalfile.txt ../testfile.txt
+
+rm testfile.txt : deletes and removes testfile.txt in a directory -> this is gone 
+
+more <filename>
+
+___________Working with directories______________
+
+cp -r Testdir CopyDir/
+man cp and hit q to get out :Get the help about the command
+mv TestDir RenameDir :Renames the TestDir to RenameDir
+mv testcopydir/ copydir/ : Copies the testcopydir to copydir
+rm -r testcopydir/ : This will delete the folder 
+rm -r -f copydir/ : this will forcefully delete the directory 
+
+_____________Working with Find ___________________
+
+find . : finds all the files in the present working directory 
+find Sub-dir/ : finds all the files present in the Sub-dir
+find . -type d : finds all the directory in the present working directory 
+find . -type f : find all the files in the present working directory
+find . -type f -name "test1.txt" : find the file "test1.txt" in the present working dir
+find . -type f -name "test*" : find the files that start with test, using wildcards 
+find . -type f -name "*.py" : find all the files with an extension py in the dir
+find . -type f -mmin -10 : find all the files modified in less than 10mins ago 
+find . -type f -mmin +10 : find all the files modified more than 10mins ago
+find . -type f -mmin +1 -mmin -5 : find all the files modified > 1 min ago and < 5mins ago
+find . -type f -mtime +10 : find all the files modified more than 10 days  ago
+atime - access-time
+ctime - change -time
+
+find . -size +5M : find all the files more than 5Megabites 
+find . -perm 777 : find all the files and directories with permissions 777
+
+________________Working with chown ____________________
+demo.txt ls -l : this will list the permissions demo.txt has, as a root user you can chnages and assign ti user
+chown owner-user file 
+chown owner-user:owner-group file
+chown owner-user:owner-group directory
+chown options owner-user:owner-group file
+
+________________Working with chmod _____________________
+
+4 = read 
+2 = write
+1 = execute 
+0 = no permission 
+
+chmod u=rwx,g=rx,o=r myfile: user can read , write and execute, group can read and execute, others can read
+chmod (4+2+1)(4+1)(4) myfile 
+chmod 754 myfile
+chmod 777 myfile : everyone can do everything 
+chmod -r 777 mydir : changing the permissions on the directory
+
+
+Giving Permission to specific user to access the folder 
+You could use setfacl:
+
+$setfacl -m u:username:rwx myfolder
+This sets permissions for specific users, without changing the ownership of the directory.
+
+
+
+
+_______________ Working with Processes __________________
+top : list all the processes running, top is mostly used interactively 
+ps : list all the processes, ps is designed for non-interactive use (scripts, extracting some information with shell pipelines etc.)
+kill : kills any process 
+kill 87988 : kills the process with PID = 87988
+$ ps aux | grep synth
+
+_______________ Working with Network __________________
+ifconfig : The ifconfig command is used to get the information of active network-interfaces in a Unix-like operating system
+ping www.google.come : pings a given url
+wget <url> : downloads the content from a web -url 
+wget --user=arvind.penumaka --ask-password <url-link>
+
+___________ Miscillenous__________________
+sudo - SuperUser Do
+To create a tar.gz archive from a given folder you can use the following command
+tar -zcvf tar-archive-name.tar.gz source-folder-name
+
+This will compress the contents of source-folder-name to a tar.gz archive named tar-archive-name.tar.gz
+
+To extract a tar.gz compressed archive you can use the following command
+tar -zxvf tar-archive-name.tar.gz
+
+to view the contents of tar file without extracting 
+
+tar -tf filename.tar.gz
+
+_________ Passing environment variables ______
+
+docker compose -e PWD="./"
+
+
+_______ edit bash profile ____
+Type nano .bash_profile – This command will open the .bash_profile document (or create it if it doesn’t already exist) in the easiest to use text editor in Terminal – Nano
+nano .bash_profile
+
+
+__________
+
+apt command	the command it replaces	function of the command
+apt install	apt-get install	Installs a package
+apt remove	apt-get remove	Removes a package
+apt purge	apt-get purge	Removes package with configuration
+apt update	apt-get update	Refreshes repository index
+apt upgrade	apt-get upgrade	Upgrades all upgradable packages
+apt autoremove	apt-get autoremove	Removes unwanted packages
+apt full-upgrade	apt-get dist-upgrade	Upgrades packages with auto-handling of dependencies
+apt search	apt-cache search	Searches for the program
+apt show	apt-cache show	Shows package details
+
+Navigating to the root directory
+cd ~/
+
+__________
+
+
+alias cd..="cd .."
+alias cd...="cd ../.."
+alias cd...="cd ../.."
+alias gi="grep -i"
+alias l="ls -al"
+alias lm="ls -al | more"
+alias lf="ls -FG"
+alias h=history
+alias hm="history | more"
+
+# places
+alias bin="cd /Users/al/tomcat/bin"
+alias html="cd /home/apache/html"
+
+# file finding
+alias ff="find . -type f -name "
+
+# "que pasa" (an old friend said this a lot)
+alias qp="ps auxwww | more"
+
+# ssh: i modified this one for public consumption
+alias fb="ssh al@foo.bar.com"
+
+# for dos users
+alias dir="ls -al"
+alias md=mkdir
+alias ren=mv
+alias type=cat
+alias search=grep
+
+
+____________
+
+Find the size of the directory below it 
+
+$ du 
+
+
+_____________
+
+Global regular expression
+
+# Search for text in a file, search 
+## search the name jane willaims in the file names.txt
+
+$grep "jane Williams" names.txt
+
+# If we want whole words 
+
+$grep -w "John Williams" names.txt
+
+# Tell grep that to be non case sensitive
+
+$grep -wi "John Williams" names.txt
+
+# Print the line number 
+
+$grep -win "John Williams" names.txt 
+
+## See the 4 lines before the match
+
+$grep -win -B "john Williams" names.txt 
+
+## See the 4 lines after the match 
+
+$grep -win -A "John Williams" names.txt
+
+## See the 4 lines before and after the match
+
+$grep -win -C "John Williams" names.txt
+
+## Search in all the files under the directory 
+
+$grep -win -C "John Williams" ./*
+
+## search only .txt files 
+
+$grep -win -C "John Williams" ./*.txt
+
+## How to search in the files in sub directories recursively
+
+$grep -winr "John Williams" . 
+
+## Just want to see what files contains the match
+
+$grep -wirl "John Williams" . 
+
+## Number of matches in each file 
+
+$grep -wirc "John Williams" . 
+
+________________________________________________________________
+
+Using the pipeline 
+
+ps aux | grep airflow 
+
+________________________________________________________________
+
+## Finding the phone number in grep using the regular expressions 
+
+$ grep "...-...-...." names.txt
+$ grep "\d{3}-\d{3}-\d{4}" names.txt
+
+
+_______________
+
+
+
+
+
